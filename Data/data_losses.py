@@ -22,6 +22,12 @@ class NLLLoss(nn.Module):
 
             # Compute the loss
             loss = self.prob_model.nll(parameters, t)
+
+            if torch.isnan(loss):
+                raise Exception(f"NaN loss with:\nInput: {i}\nTarget: {t}")
+
+            if torch.isinf(loss):
+                raise Exception(f"Inf loss with:\nInput: {i}\nTarget: {t}")
             
             total_loss += loss
 

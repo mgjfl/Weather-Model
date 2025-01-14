@@ -71,16 +71,6 @@ class ProbabilisticModel(metaclass = ABCMeta):
         """
         raise NotImplementedError("Must implement sample method.")
     
-    # @abstractmethod
-    # def pdf(self, params : dict[str, torch.tensor], x : torch.tensor) -> torch.tensor:
-    #     """Computes the probability density function at x.
-
-    #     Args:
-    #         params (dict[str, torch.tensor]) : the parameters
-    #         x (torch.tensor) : the input value
-    #     """
-    #     raise NotImplementedError("Must implement pdf method.")
-
     @abstractmethod
     def log_probs(self, params : dict[str, torch.tensor], x : torch.tensor) -> torch.tensor:
         """Computes the log probability at x.
@@ -102,7 +92,7 @@ class ProbabilisticModel(metaclass = ABCMeta):
     
 class RandomSampler(ProbabilisticModel):
     
-    def generate(self, n : int) -> torch.tensor:
+    def generate(self, n : int, seed : int) -> torch.tensor:
         """Generates data for n days with parameters given by parameters_init.
 
         Args:
@@ -114,18 +104,23 @@ class RandomSampler(ProbabilisticModel):
         
         # Datastructure for the generated data
         data = torch.zeros(size = (n, self.d, self.w))
+        
+        # Set global seed
+        torch.manual_seed(seed)
 
         # Sample for each day
         for t in range(n):
-            parameters = self.parameter_init(t)
-            torch.manual_seed(t) # Reset fixed seed from self.paramter_init
+            parameters = self.parameter_init(t, seed)
+            torch.manual_seed(seed + t) # Reset fixed seed from self.paramter_init
             data[t] = self.sample(parameters).reshape(self.d, self.w)
 
         return data
     
         
-    def parameter_init(self, t : int) -> dict[str, torch.tensor]:
-        """Generates a random initialization of the parameters that satisfies potential constraints at time t.
+    def parameter_init(self, t : int, seed : int) -> dict[str, torch.tensor]:
+        """
+        Generates a random initialization of the parameters that satisfies potential constraints at time t.
+        This implementation is time-independent with a fixed seed.
         
         Args:
             t (int) : time
@@ -135,7 +130,7 @@ class RandomSampler(ProbabilisticModel):
         """
         
         # All parameters are sampled from U[0,1]
-        torch.manual_seed(1)
+        torch.manual_seed(seed)
         return self.array2parameters(torch.random.uniform(size = (self.parameter_count)))
 
     

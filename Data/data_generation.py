@@ -12,13 +12,13 @@ class GaussianData(RandomSampler):
             }
         )
         
-        self.covariance_matrix = self.covariance_init()
+        self.covariance_matrix = None
     
-    def covariance_init(self) -> torch.tensor:
+    def covariance_init(self, seed : int) -> torch.tensor:
         """From https://stats.stackexchange.com/questions/124538/how-to-generate-a-large-full-rank-random-correlation-matrix-with-some-strong-cor"""
 
         # Reproducibility
-        torch.manual_seed(1)
+        torch.manual_seed(seed)
         
         n = self.w * self.d
 
@@ -53,31 +53,77 @@ class GaussianData(RandomSampler):
         lower_triangular[indices[0], indices[1]] = array
         
         # Make sure the diagonal entries are positive
-        idxs = torch.arange(0, n)
-        lower_triangular[idxs, idxs] = lower_triangular[idxs, idxs]**2
+        lower_triangular.diagonal().pow_(2)
+        
+        # Make sure L is invertible by ensuring a minimum value
+        self.minimal_diagonal(lower_triangular)
 
         return lower_triangular
+
+    def minimal_diagonal(self, L: torch.tensor, min_val: float = 1e-3) -> None:
+        # Extract the diagonal (view) and modify in-place
+        L_diag = torch.diagonal(L, 0)
+        L_diag.abs_()  # Ensure diagonal elements are positive
+        L_diag.clamp_(min=min_val)  # Enforce minimum value
+
+        # No return needed since L is modified in-place
+        pass
     
-    def array_to_spd(self, array : torch.tensor) -> torch.tensor:
+    def invert_cholesky(self, L : torch.tensor) -> torch.tensor:
+        return L @ L.T
+    
+    def regularize_matrix(self, A: torch.tensor, epsilon : float = 1e-6) -> None:
+        """
+        Regularizes a symmetric matrix A by adding a small term to its diagonal to improve numerical stability.
+        
+        Parameters:
+        - A (torch.tensor): Symmetric input matrix (modified in-place).
+        
+        Note:
+        - The function modifies A in-place and does not return a value.
+        """
+
+        # Compute maximum eigenvalue
+        lambda_max = torch.linalg.eigvalsh(A).max()
+
+        # Compute the regularization value
+        regularization = epsilon * lambda_max
+
+        # Add regularization to the diagonal in-place
+        A.diagonal().add_(regularization)
+        
+    
+    def array_to_spd(self, array : torch.tensor, L : torch.tensor = None) -> torch.tensor:
         """
         Transforms array into a lower triangular matrix with positive diagonal and
         subsequently constructs C as a Cholesky decomposition of array.
         """
-        L = self.array_to_lower_triangular(array)
-        return L @ L.T
+        
+        if L is None:
+            L = self.array_to_lower_triangular(array)
 
-    def mean_init(self, t : int) -> torch.tensor:
+        # Cholesky decomposition
+        cov = self.invert_cholesky(L)
+
+        # Add regularization proportional to the largest eigenvalue
+        # For numerical stability (xT(A+D)x=xTAx+xTDx>0)
+        self.regularize_matrix(cov)
+        
+        
+        return cov
+
+    def mean_init(self, t : int, seed : int) -> torch.tensor:
 
         # Ensure reproducibility
-        torch.manual_seed(1)
+        torch.manual_seed(seed)
         
         return torch.rand(size = (self.parameter_shapes["mean"],))
         
     @override
-    def parameter_init(self, t: int) -> dict[str, torch.tensor]:
+    def parameter_init(self, t: int, seed : int) -> dict[str, torch.tensor]:
         return {
-            "mean" : self.mean_init(t),
-            "covariance" : self.covariance_matrix
+            "mean" : self.mean_init(t, seed),
+            "covariance" : self.covariance_init(seed) if self.covariance_matrix is None else self.covariance_matrix
         }
         
     def cov_matrix(self, params : dict[str, torch.tensor]) -> torch.tensor:
@@ -122,12 +168,42 @@ class GaussianData(RandomSampler):
     def log_probs(self, params, x):
         
         mu = params["mean"]
-        cov = self.cov_matrix(params)
-        icov = torch.linalg.pinv(cov)
-        y = x.view(-1)
-        eps = 1e-10
+        L = self.array_to_lower_triangular(params["lower_tril"])
+        n = L.shape[0]
         
-        return - 1/2 * (torch.log(torch.det(cov) + eps) + (y - mu) @ icov @ (y - mu))
+        
+        y = x.view(-1)
+        # Log det for Cholesky decomposition: https://math.stackexchange.com/questions/3158303/using-cholesky-decomposition-to-compute-covariance-matrix-determinant
+        log_det_cov = 2 * torch.sum(torch.log(torch.diagonal(L)))
+        
+        # det(A) = prod lambda_i --> regularize with geometric mean
+        lambda_avg = torch.exp(log_det_cov / n)
+        eps = 1e-6
+        
+        cov = self.invert_cholesky(L) + eps * lambda_avg * torch.eye(n, device=L.device)
+        
+        # Step 1: Solve L y = b for y (forward substitution)
+        b = (y - mu)
+        z = torch.linalg.solve(cov, b.reshape(-1, 1))
+
+        log_probs = - 1/2 * (log_det_cov + b @ z)
+        
+        if torch.isnan(log_probs).any():
+            print(f"{log_probs=}")
+            print(f"{log_det_cov=}")
+            print(f"{L=}")
+            print(f"{L.max()=}")
+            print(f"{L.min()=}")
+            print(f"{L.diag()=}")
+            print(f"{(y-mu)=}")
+            print(f"{torch.linalg.pinv(L)=}")
+            print(f"{z=}")
+            # print(f"{z1=}")
+            # print(f"{z2=}")
+            # print(f"{icov=}")
+            print(f"{torch.linalg.cond(L)=}")
+            
+        return log_probs
 
 class PeriodicGaussianData(GaussianData):
     
@@ -136,10 +212,10 @@ class PeriodicGaussianData(GaussianData):
         
         
     @override
-    def mean_init(self, t : int) -> torch.tensor:
+    def mean_init(self, t : int, seed : int) -> torch.tensor:
 
         # Ensure reproducibility
-        torch.manual_seed(1)
+        torch.manual_seed(seed)
 
         # Constructing the mean vector
         size = self.w * self.d
