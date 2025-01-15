@@ -3,6 +3,19 @@ import os
 import json
 import yaml
 import datetime
+import shutil
+import errno
+import stat
+import torch
+from collections import defaultdict
+
+def handleRemoveReadonly(func, path, exc):
+  excvalue = exc[1]
+  if func in (os.rmdir, os.remove) and excvalue.errno == errno.EACCES:
+      os.chmod(path, stat.S_IRWXU| stat.S_IRWXG| stat.S_IRWXO) # 0777
+      func(path)
+  else:
+      raise
 
 class DataSaver:
     
@@ -16,14 +29,13 @@ class DataSaver:
         ) if config["output"]["wandb"] else None
         
         self.config = config
-        self.results = dict()
+        self.results = defaultdict(list)
         self.metrics = config["output"]["metrics"]
         self.run_number = run_number
         
         for metric in self.metrics:
             if self.run:
                 wandb.define_metric(metric, summary = self.wandb_summary(metric))
-            self.results[metric] = list()
             
     def wandb_summary(self, metric):
         
@@ -36,11 +48,10 @@ class DataSaver:
             
     def log_metrics(self, log_dict):
         for (metric, value) in log_dict.items():
-            if metric in self.metrics:
-                self.results[metric].append(value)
+            self.results[metric].append(value)
 
         if self.run:
-            self.run.log(log_dict)
+            self.run.log({k : v for k, v in log_dict.items() if k in self.metrics})
             
     def get_base_dir(self):
         base_path = os.path.join(
@@ -70,9 +81,13 @@ class DataSaver:
         config_path = os.path.join(output_dir, 'config.yaml')
         with open(config_path, 'w') as file:
             yaml.dump(self.config, file)
+            
+    def save_model(self, output_dir, model):
+        """Save PyTorch model in the TorchScript format."""
+        torch.save(model, os.path.join(output_dir, 'trained_model.pt')) # Save
         
         
-    def end_run(self):
+    def end_run(self, model):
         
         if self.run:
             self.run.finish()
@@ -83,9 +98,15 @@ class DataSaver:
         # Set up the run dir
         base_path = self.get_base_dir()
         run_dir = self.get_run_dir()
+        if os.path.exists(run_dir):
+            try:
+                shutil.rmtree(run_dir, ignore_errors = False, onerror=handleRemoveReadonly)
+            except Exception as e:
+                print(e)
         os.makedirs(run_dir, exist_ok=True)
         
         # Save config and metrics
         self.save_metrics(run_dir)
         self.save_config(base_path)
+        self.save_model(run_dir, model)
 

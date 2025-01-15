@@ -1,5 +1,7 @@
 import torch
 from torch.utils.data import DataLoader
+import numpy as np
+from timeit import default_timer as timer
 
 class EarlyStopper:
     def __init__(self, patience=1, min_delta=0):
@@ -50,14 +52,14 @@ def train_one_epoch(
         # Backpropagation
         optimizer.zero_grad()
         loss.backward()
+
+        # Prevent exploding gradients
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1)
+        
         optimizer.step()
 
         # Update loss
         running_loss += loss.item() * X.size(0)
-
-        if verbose and batch % 100 == 0:
-            loss, current = loss.item(), batch * batch_size + len(X)
-            print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
             
     # Compute the training loss
     train_loss = running_loss / len(dataloader.dataset)
@@ -69,14 +71,14 @@ def val_one_epoch(dataloader, model, loss_fn, verbose = False):
     # Set the model to evaluation mode - important for batch normalization and dropout layers
     # Unnecessary in this situation but added for best practices
     model.eval()
-    test_loss = 0
+    test_loss = np.longdouble(0.0)
 
     # Evaluating the model with torch.no_grad() ensures that no gradients are computed during test mode
     # also serves to reduce unnecessary gradient computations and memory usage for tensors with requires_grad=True
     with torch.no_grad():
         for X, y in dataloader:
             pred = model(X)
-            test_loss += loss_fn(pred, y).item() * X.size(0)
+            test_loss += np.longdouble(loss_fn(pred, y).item() * X.size(0))
 
     test_loss /= len(dataloader.dataset)
     
@@ -110,12 +112,18 @@ def train_model(
     for t in range(EPOCHS):
         if verbose:
             print(f"Epoch {t+1}\n-------------------------------")
+        
+        start = timer()
         train_loss  = train_one_epoch(train_dataloader, model, loss_fn, optimizer, batch_size, verbose)
+        middle = timer()
         val_loss    = val_one_epoch(test_dataloader, model, loss_fn, verbose)
+        end = timer()
         
         data_saver.log_metrics({
-            "train_loss"    : train_loss,
-            "val_loss"      : val_loss,
+            "train_loss"    : float(train_loss),
+            "train_time"    : middle - start,
+            "val_loss"      : float(val_loss),
+            "val_time"      : end - middle,
             "lr"            : scheduler.get_last_lr()[0]
         })
         
@@ -126,3 +134,5 @@ def train_model(
 
     if verbose:
         print("Done!")
+        
+    return model

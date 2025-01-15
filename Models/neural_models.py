@@ -19,6 +19,7 @@ class ACW(nn.Module):
         self.in_channels = in_channels
         self.out_channels = out_channels
         self.model_kwargs = model_kwargs
+        self.grid_shape = grid_shape
         self.model = self._create_model()
         self.project = None
         if grid_shape is not None:
@@ -29,6 +30,7 @@ class ACW(nn.Module):
         return self.model_class(
             in_channels = self.in_channels, 
             out_channels = self.out_channels, 
+            grid_shape = self.grid_shape,
             **self.model_kwargs)
         
     def use_linear_projection(self, in_shape : torch.tensor, out_size : int):
@@ -49,7 +51,7 @@ class ACW(nn.Module):
         x = self.model(x)
         # Linear projection layer
         if self.project is not None:
-            x = x.view(-1, self.in_size)
+            x = x.reshape((-1, self.in_size))
             x = self.project(x)
             
         return x
@@ -85,6 +87,9 @@ class PNN(ACW):
                     self.probabilistic_model.d, self.probabilistic_model.w)
                 
         return data
+    
+    def get_prob_model(self):
+        return self.probabilistic_model
     
 class BNN(ACW):
     """

@@ -1,6 +1,7 @@
 # Project specific
 OLD/
 wandb/
+Results/Runs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

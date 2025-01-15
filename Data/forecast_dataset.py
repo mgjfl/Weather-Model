@@ -16,6 +16,15 @@ class WeatherDataset(Dataset):
             torch.tensor: shape of the input grid
         """
         raise NotImplementedError("Subclass must implement this method.")
+    
+    @abstractmethod
+    def get_in_channels(self) -> int:
+        """Returns the number of input channels.
+
+        Returns:
+            torch.tensor: number of input channels
+        """
+        raise NotImplementedError("Subclass must implement this method.")
 
 class PastNDaysForecastDataset(WeatherDataset):
     def __init__(self, observations : np.array, days : int):
@@ -34,7 +43,7 @@ class PastNDaysForecastDataset(WeatherDataset):
         self.observations = torch.Tensor(observations)
         self.input_shape = torch.tensor([self.days, self.d])
         self.in_channels = w
-
+        
     def to(self, device):
         self.observations = self.observations.to(device)
         self.input_shape = self.input_shape.to(device)
@@ -42,6 +51,9 @@ class PastNDaysForecastDataset(WeatherDataset):
 
     def get_input_shape(self):
         return self.input_shape
+    
+    def get_in_channels(self):
+        return self.in_channels
 
     def __len__(self):
         return len(self.observations) - self.days

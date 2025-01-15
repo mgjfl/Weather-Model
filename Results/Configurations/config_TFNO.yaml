@@ -1,8 +1,8 @@
 data:
   dataset: NextDayForecastDataset
-  gen_model: PeriodicGaussianData
+  gen_model: LinearGaussian
   global_seed: 42
-  n_runs: 1
+  n_runs: 10
   parameters:
     d: 10
     n: 365
@@ -17,27 +17,27 @@ model:
     - 16
     - 16
     out_channels: 1
-  prob_model: PeriodicGaussianData
+  prob_model: LinearGaussian
   type: TFNO
 output:
   metrics:
   - train_loss
   - val_loss
   - lr
-  project_name: SynthethicPeriodicGaussian
+  project_name: TrainingEval
   run_name: TFNO
   wandb: false
 training:
   batch_size: 64
   early_stopping:
-    enabled: true
-    patience: 10
-  epochs: 50
+    enabled: false
+    patience: 20
+  epochs: 100
   learning_rate: 0.001
   loss_function: NLLLoss
   optimizer: Adam
   scheduler:
     parameters:
       gamma: 0.5
-      step_size: 20
+      step_size: 10
     type: StepLR

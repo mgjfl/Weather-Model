@@ -11,6 +11,8 @@ class DataProcessing:
         
     def data2Pandas(self) -> pd.DataFrame:
 
+        raise Exception("dims data do not match")
+
         # Index day and coordinate explicitly
         out_arr = np.column_stack([
             np.repeat(np.arange(1, self.T + 1, dtype = int), self.d),
