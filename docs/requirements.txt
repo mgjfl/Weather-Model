@@ -1,6 +1,6 @@
 sphinx_rtd_theme
 neuraloperator
-yaml
+PyYaml
 wandb
 torch
 numpy
