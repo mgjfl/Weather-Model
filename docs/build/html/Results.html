@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results package &mdash; Weather-Model  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Training package" href="Training.html" />
+    <link rel="prev" title="Models package" href="Models.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Weather-Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Data.html">Data package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Models.html">Models package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Results package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Results.extract_from_configuration">Results.extract_from_configuration module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Results.extract_from_configuration.create_model"><code class="docutils literal notranslate"><span class="pre">create_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Results.extract_from_configuration.get_dataset"><code class="docutils literal notranslate"><span class="pre">get_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Results.extract_from_configuration.get_device"><code class="docutils literal notranslate"><span class="pre">get_device()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Results.extract_from_configuration.get_model_and_data_by_config"><code class="docutils literal notranslate"><span class="pre">get_model_and_data_by_config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Results.extract_from_configuration.get_model_size"><code class="docutils literal notranslate"><span class="pre">get_model_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Results.extract_from_configuration.get_model_summary"><code class="docutils literal notranslate"><span class="pre">get_model_summary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Results.extract_from_configuration.get_training_components"><code class="docutils literal notranslate"><span class="pre">get_training_components()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Results.extract_from_configuration.str_to_class"><code class="docutils literal notranslate"><span class="pre">str_to_class()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Results.parser">Results.parser module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Results.parser.ConfigManager"><code class="docutils literal notranslate"><span class="pre">ConfigManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Results.parser.ConfigManager.get_data_config"><code class="docutils literal notranslate"><span class="pre">ConfigManager.get_data_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Results.parser.ConfigManager.get_model_config"><code class="docutils literal notranslate"><span class="pre">ConfigManager.get_model_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Results.parser.ConfigManager.get_output_config"><code class="docutils literal notranslate"><span class="pre">ConfigManager.get_output_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Results.parser.ConfigManager.get_training_config"><code class="docutils literal notranslate"><span class="pre">ConfigManager.get_training_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Results.parser.ConfigManager.load_config"><code class="docutils literal notranslate"><span class="pre">ConfigManager.load_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Results.parser.ConfigManager.save_config"><code class="docutils literal notranslate"><span class="pre">ConfigManager.save_config()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Results.parser.create_yaml_template"><code class="docutils literal notranslate"><span class="pre">create_yaml_template()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Results.run_configuration">Results.run_configuration module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Results.run_configuration.profile_configuration"><code class="docutils literal notranslate"><span class="pre">profile_configuration()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Results.run_configuration.run_configuration"><code class="docutils literal notranslate"><span class="pre">run_configuration()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Results.run_configuration.run_project"><code class="docutils literal notranslate"><span class="pre">run_project()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Results.save_results">Results.save_results module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Results.save_results.DataSaver"><code class="docutils literal notranslate"><span class="pre">DataSaver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Results.save_results.DataSaver.end_run"><code class="docutils literal notranslate"><span class="pre">DataSaver.end_run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Results.save_results.DataSaver.get_base_dir"><code class="docutils literal notranslate"><span class="pre">DataSaver.get_base_dir()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Results.save_results.DataSaver.get_run_dir"><code class="docutils literal notranslate"><span class="pre">DataSaver.get_run_dir()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Results.save_results.DataSaver.log_metrics"><code class="docutils literal notranslate"><span class="pre">DataSaver.log_metrics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Results.save_results.DataSaver.save_config"><code class="docutils literal notranslate"><span class="pre">DataSaver.save_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Results.save_results.DataSaver.save_metrics"><code class="docutils literal notranslate"><span class="pre">DataSaver.save_metrics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Results.save_results.DataSaver.save_model"><code class="docutils literal notranslate"><span class="pre">DataSaver.save_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Results.save_results.DataSaver.wandb_summary"><code class="docutils literal notranslate"><span class="pre">DataSaver.wandb_summary()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Results.save_results.handleRemoveReadonly"><code class="docutils literal notranslate"><span class="pre">handleRemoveReadonly()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Results">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Training.html">Training package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weather-Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Results package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Results.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="results-package">
+<h1>Results package<a class="headerlink" href="#results-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-Results.extract_from_configuration">
+<span id="results-extract-from-configuration-module"></span><h2>Results.extract_from_configuration module<a class="headerlink" href="#module-Results.extract_from_configuration" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.extract_from_configuration.create_model">
+<span class="sig-prename descclassname"><span class="pre">Results.extract_from_configuration.</span></span><span class="sig-name descname"><span class="pre">create_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="Data.html#Data.forecast_dataset.WeatherDataset" title="Data.forecast_dataset.WeatherDataset"><span class="pre">WeatherDataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="Models.html#Models.neural_models.ACW" title="Models.neural_models.ACW"><span class="pre">ACW</span></a></span></span><a class="headerlink" href="#Results.extract_from_configuration.create_model" title="Link to this definition"></a></dt>
+<dd><p>Creates the model from the model configurations.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model_config (dict): Model configuration</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.extract_from_configuration.get_dataset">
+<span class="sig-prename descclassname"><span class="pre">Results.extract_from_configuration.</span></span><span class="sig-name descname"><span class="pre">get_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.extract_from_configuration.get_dataset" title="Link to this definition"></a></dt>
+<dd><p>Gets the dataset in the proper format.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>data_config (dict): Dataset configuration</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.extract_from_configuration.get_device">
+<span class="sig-prename descclassname"><span class="pre">Results.extract_from_configuration.</span></span><span class="sig-name descname"><span class="pre">get_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">device</span></span></span><a class="headerlink" href="#Results.extract_from_configuration.get_device" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.extract_from_configuration.get_model_and_data_by_config">
+<span class="sig-prename descclassname"><span class="pre">Results.extract_from_configuration.</span></span><span class="sig-name descname"><span class="pre">get_model_and_data_by_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.extract_from_configuration.get_model_and_data_by_config" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.extract_from_configuration.get_model_size">
+<span class="sig-prename descclassname"><span class="pre">Results.extract_from_configuration.</span></span><span class="sig-name descname"><span class="pre">get_model_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#Results.extract_from_configuration.get_model_size" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of trainable parameters for a model</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (nn.Module): The PyTorch model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.extract_from_configuration.get_model_summary">
+<span class="sig-prename descclassname"><span class="pre">Results.extract_from_configuration.</span></span><span class="sig-name descname"><span class="pre">get_model_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="Data.html#Data.forecast_dataset.WeatherDataset" title="Data.forecast_dataset.WeatherDataset"><span class="pre">WeatherDataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.extract_from_configuration.get_model_summary" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.extract_from_configuration.get_training_components">
+<span class="sig-prename descclassname"><span class="pre">Results.extract_from_configuration.</span></span><span class="sig-name descname"><span class="pre">get_training_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="Models.html#Models.neural_models.ACW" title="Models.neural_models.ACW"><span class="pre">ACW</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">training_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.extract_from_configuration.get_training_components" title="Link to this definition"></a></dt>
+<dd><p>Returns the loss function, optimizer and scheduler.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (nn.Module): The ML model
+training_config (dict): Training configuration</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.extract_from_configuration.str_to_class">
+<span class="sig-prename descclassname"><span class="pre">Results.extract_from_configuration.</span></span><span class="sig-name descname"><span class="pre">str_to_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.extract_from_configuration.str_to_class" title="Link to this definition"></a></dt>
+<dd><p>Translates class names from configuration files to classes.</p>
+</dd></dl>
+
+</section>
+<section id="module-Results.parser">
+<span id="results-parser-module"></span><h2>Results.parser module<a class="headerlink" href="#module-Results.parser" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Results.parser.ConfigManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Results.parser.</span></span><span class="sig-name descname"><span class="pre">ConfigManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.parser.ConfigManager.get_data_config">
+<span class="sig-name descname"><span class="pre">get_data_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager.get_data_config" title="Link to this definition"></a></dt>
+<dd><p>Retrieve data configuration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.parser.ConfigManager.get_model_config">
+<span class="sig-name descname"><span class="pre">get_model_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager.get_model_config" title="Link to this definition"></a></dt>
+<dd><p>Retrieve model configuration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.parser.ConfigManager.get_output_config">
+<span class="sig-name descname"><span class="pre">get_output_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager.get_output_config" title="Link to this definition"></a></dt>
+<dd><p>Retrieve output configuration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.parser.ConfigManager.get_training_config">
+<span class="sig-name descname"><span class="pre">get_training_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager.get_training_config" title="Link to this definition"></a></dt>
+<dd><p>Retrieve training configuration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.parser.ConfigManager.load_config">
+<span class="sig-name descname"><span class="pre">load_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager.load_config" title="Link to this definition"></a></dt>
+<dd><p>Load configuration from a YAML file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.parser.ConfigManager.save_config">
+<span class="sig-name descname"><span class="pre">save_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager.save_config" title="Link to this definition"></a></dt>
+<dd><p>Save configuration to a YAML file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.parser.create_yaml_template">
+<span class="sig-prename descclassname"><span class="pre">Results.parser.</span></span><span class="sig-name descname"><span class="pre">create_yaml_template</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.create_yaml_template" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-Results.run_configuration">
+<span id="results-run-configuration-module"></span><h2>Results.run_configuration module<a class="headerlink" href="#module-Results.run_configuration" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.run_configuration.profile_configuration">
+<span class="sig-prename descclassname"><span class="pre">Results.run_configuration.</span></span><span class="sig-name descname"><span class="pre">profile_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.run_configuration.profile_configuration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.run_configuration.run_configuration">
+<span class="sig-prename descclassname"><span class="pre">Results.run_configuration.</span></span><span class="sig-name descname"><span class="pre">run_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.run_configuration.run_configuration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.run_configuration.run_project">
+<span class="sig-prename descclassname"><span class="pre">Results.run_configuration.</span></span><span class="sig-name descname"><span class="pre">run_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.run_configuration.run_project" title="Link to this definition"></a></dt>
+<dd><p>Runs all configurations with a certain project name.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>project_name (str): Name of the project</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-Results.save_results">
+<span id="results-save-results-module"></span><h2>Results.save_results module<a class="headerlink" href="#module-Results.save_results" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Results.save_results.DataSaver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Results.save_results.</span></span><span class="sig-name descname"><span class="pre">DataSaver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.save_results.DataSaver" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.save_results.DataSaver.end_run">
+<span class="sig-name descname"><span class="pre">end_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.save_results.DataSaver.end_run" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.save_results.DataSaver.get_base_dir">
+<span class="sig-name descname"><span class="pre">get_base_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.save_results.DataSaver.get_base_dir" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.save_results.DataSaver.get_run_dir">
+<span class="sig-name descname"><span class="pre">get_run_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.save_results.DataSaver.get_run_dir" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.save_results.DataSaver.log_metrics">
+<span class="sig-name descname"><span class="pre">log_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.save_results.DataSaver.log_metrics" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.save_results.DataSaver.save_config">
+<span class="sig-name descname"><span class="pre">save_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.save_results.DataSaver.save_config" title="Link to this definition"></a></dt>
+<dd><p>Save configuration as a YAML file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.save_results.DataSaver.save_metrics">
+<span class="sig-name descname"><span class="pre">save_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.save_results.DataSaver.save_metrics" title="Link to this definition"></a></dt>
+<dd><p>Save metrics as a JSON file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.save_results.DataSaver.save_model">
+<span class="sig-name descname"><span class="pre">save_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.save_results.DataSaver.save_model" title="Link to this definition"></a></dt>
+<dd><p>Save PyTorch model in the TorchScript format.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Results.save_results.DataSaver.wandb_summary">
+<span class="sig-name descname"><span class="pre">wandb_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.save_results.DataSaver.wandb_summary" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Results.save_results.handleRemoveReadonly">
+<span class="sig-prename descclassname"><span class="pre">Results.save_results.</span></span><span class="sig-name descname"><span class="pre">handleRemoveReadonly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Results.save_results.handleRemoveReadonly" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-Results">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Results" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Models.html" class="btn btn-neutral float-left" title="Models package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Training.html" class="btn btn-neutral float-right" title="Training package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Maurits Flos.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
