@@ -1,6 +1,7 @@
 from .data_models import *
 from typing_extensions import override
 from numpy import sin, log
+from typing import Dict
 
 class GaussianData(RandomSampler):
     """
@@ -28,7 +29,7 @@ class GaussianData(RandomSampler):
     ################################
 
     @override
-    def parameter_init(self, t: int, seed : int) -> dict[str, torch.tensor]:
+    def parameter_init(self, t: int, seed : int) -> Dict[str, torch.tensor]:
         return {
             "mean" : self.mean_init(t, seed),
             "covariance" : self.covariance_init(seed) if self.covariance_matrix is None else self.covariance_matrix
@@ -64,7 +65,7 @@ class GaussianData(RandomSampler):
     ### Sampling ###
     ################
 
-    def sample(self, params : dict[str, torch.tensor]) -> torch.Tensor:
+    def sample(self, params : Dict[str, torch.tensor]) -> torch.Tensor:
         """
         Samples from a multivariate Gaussian distribution with time-dependent parameters.
         """
@@ -79,7 +80,7 @@ class GaussianData(RandomSampler):
     ### Log-likelihood ###
     ######################
     
-    def log_probs(self, params : dict[str, torch.tensor], x : torch.Tensor) -> torch.Tensor:
+    def log_probs(self, params : Dict[str, torch.tensor], x : torch.Tensor) -> torch.Tensor:
         """
         Computes the log-likelihood of the input `x` based on the given parameters `params`.
         """
@@ -174,7 +175,7 @@ class GaussianData(RandomSampler):
         """
         return L @ L.T
 
-    def _cov_matrix(self, params : dict[str, torch.tensor]) -> torch.tensor:
+    def _cov_matrix(self, params : Dict[str, torch.tensor]) -> torch.tensor:
         """Returns the covariance matrix
 
         Args:
