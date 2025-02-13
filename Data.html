@@ -43,24 +43,24 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Data</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Data package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data-data-generation-module">Data.data_generation module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data-data-losses-module">Data.data_losses module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Data.data_generation">Data.data_generation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Data.data_losses">Data.data_losses module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-Data.data_models">Data.data_models module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data-data-visualization-module">Data.data_visualization module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data-forecast-dataset-module">Data.forecast_dataset module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Data.data_visualization">Data.data_visualization module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Data.forecast_dataset">Data.forecast_dataset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Data">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Data package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-data-generation-module">Data.data_generation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-data-losses-module">Data.data_losses module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Data.data_generation">Data.data_generation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Data.data_losses">Data.data_losses module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-Data.data_models">Data.data_models module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-data-visualization-module">Data.data_visualization module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-forecast-dataset-module">Data.forecast_dataset module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Data.data_visualization">Data.data_visualization module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Data.forecast_dataset">Data.forecast_dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Data">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Models.html">Models package</a></li>
@@ -98,11 +98,133 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </section>
-<section id="data-data-generation-module">
-<h2>Data.data_generation module<a class="headerlink" href="#data-data-generation-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-Data.data_generation">
+<span id="data-data-generation-module"></span><h2>Data.data_generation module<a class="headerlink" href="#module-Data.data_generation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Data.data_generation.GaussianData">
+<em class="property">class </em><code class="sig-prename descclassname">Data.data_generation.</code><code class="sig-name descname">GaussianData</code><span class="sig-paren">(</span><em class="sig-param">d: int</em>, <em class="sig-param">w: int</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_generation.GaussianData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Data.data_models.RandomSampler" title="Data.data_models.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data.data_models.RandomSampler</span></code></a></p>
+<p>A general class capable of modelling multivariate Gaussian distributions with time-dependent mean and covariance function.</p>
+<p>The class can sample new datapoints through:
+1. <cite>parameter_init</cite> which calls <cite>mean_init</cite> and <cite>covariance_init</cite>
+2. <cite>sample</cite></p>
+<p>The loss is dependent on the log-likelihood of the model, given by <cite>log_probs</cite></p>
+<dl class="method">
+<dt id="Data.data_generation.GaussianData.covariance_init">
+<code class="sig-name descname">covariance_init</code><span class="sig-paren">(</span><em class="sig-param">seed: int</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#Data.data_generation.GaussianData.covariance_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>From <a class="reference external" href="https://stats.stackexchange.com/questions/124538/how-to-generate-a-large-full-rank-random-correlation-matrix-with-some-strong-cor">https://stats.stackexchange.com/questions/124538/how-to-generate-a-large-full-rank-random-correlation-matrix-with-some-strong-cor</a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Data.data_generation.GaussianData.log_probs">
+<code class="sig-name descname">log_probs</code><span class="sig-paren">(</span><em class="sig-param">params: Dict[str, torch._VariableFunctionsClass.tensor], x: torch.Tensor</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#Data.data_generation.GaussianData.log_probs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the log-likelihood of the input <cite>x</cite> based on the given parameters <cite>params</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Data.data_generation.GaussianData.mean_init">
+<code class="sig-name descname">mean_init</code><span class="sig-paren">(</span><em class="sig-param">t: int</em>, <em class="sig-param">seed: int</em><span class="sig-paren">)</span> &#x2192; torch._VariableFunctionsClass.tensor<a class="headerlink" href="#Data.data_generation.GaussianData.mean_init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Data.data_generation.GaussianData.parameter_init">
+<code class="sig-name descname">parameter_init</code><span class="sig-paren">(</span><em class="sig-param">t: int</em>, <em class="sig-param">seed: int</em><span class="sig-paren">)</span> &#x2192; Dict[str, torch._VariableFunctionsClass.tensor]<a class="headerlink" href="#Data.data_generation.GaussianData.parameter_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random initialization of the parameters that satisfies potential constraints at time t.
+This implementation is time-independent with a fixed seed.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>t (int) : time</p>
+</dd>
+<dt>Returns:</dt><dd><p>Parameters: mapping parameter name to value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Data.data_generation.GaussianData.sample">
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">params: Dict[str, torch._VariableFunctionsClass.tensor]</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#Data.data_generation.GaussianData.sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Samples from a multivariate Gaussian distribution with time-dependent parameters.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Data.data_generation.LinearGaussian">
+<em class="property">class </em><code class="sig-prename descclassname">Data.data_generation.</code><code class="sig-name descname">LinearGaussian</code><span class="sig-paren">(</span><em class="sig-param">d: int</em>, <em class="sig-param">w: int</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_generation.LinearGaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Data.data_generation.GaussianData" title="Data.data_generation.GaussianData"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data.data_generation.GaussianData</span></code></a></p>
+<p>Multivariate Gaussian with linear time-dependent mean.</p>
+<dl class="method">
+<dt id="Data.data_generation.LinearGaussian.mean_init">
+<code class="sig-name descname">mean_init</code><span class="sig-paren">(</span><em class="sig-param">t: int</em>, <em class="sig-param">seed: int</em><span class="sig-paren">)</span> &#x2192; torch._VariableFunctionsClass.tensor<a class="headerlink" href="#Data.data_generation.LinearGaussian.mean_init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Data.data_generation.PeriodicGaussianData">
+<em class="property">class </em><code class="sig-prename descclassname">Data.data_generation.</code><code class="sig-name descname">PeriodicGaussianData</code><span class="sig-paren">(</span><em class="sig-param">d: int</em>, <em class="sig-param">w: int</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_generation.PeriodicGaussianData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Data.data_generation.GaussianData" title="Data.data_generation.GaussianData"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data.data_generation.GaussianData</span></code></a></p>
+<p>Multivariate Gaussian with periodic time-dependent mean.</p>
+<dl class="method">
+<dt id="Data.data_generation.PeriodicGaussianData.mean_init">
+<code class="sig-name descname">mean_init</code><span class="sig-paren">(</span><em class="sig-param">t: int</em>, <em class="sig-param">seed: int</em><span class="sig-paren">)</span> &#x2192; torch._VariableFunctionsClass.tensor<a class="headerlink" href="#Data.data_generation.PeriodicGaussianData.mean_init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="data-data-losses-module">
-<h2>Data.data_losses module<a class="headerlink" href="#data-data-losses-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-Data.data_losses">
+<span id="data-data-losses-module"></span><h2>Data.data_losses module<a class="headerlink" href="#module-Data.data_losses" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Data.data_losses.NLLLoss">
+<em class="property">class </em><code class="sig-prename descclassname">Data.data_losses.</code><code class="sig-name descname">NLLLoss</code><span class="sig-paren">(</span><em class="sig-param">prob_model: Data.data_models.ProbabilisticModel</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.NLLLoss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="Data.data_losses.NLLLoss.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">input</em>, <em class="sig-param">target</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.NLLLoss.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</aside>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Data.data_losses.NLLLoss.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#Data.data_losses.NLLLoss.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Data.data_losses.NMLLLoss">
+<em class="property">class </em><code class="sig-prename descclassname">Data.data_losses.</code><code class="sig-name descname">NMLLLoss</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">num_data</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.NMLLLoss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Marginal Negative Log Likelihood for Gaussian Processes.</p>
+<dl class="method">
+<dt id="Data.data_losses.NMLLLoss.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">input</em>, <em class="sig-param">target</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.NMLLLoss.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</aside>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Data.data_losses.NMLLLoss.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#Data.data_losses.NMLLLoss.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-Data.data_models">
 <span id="data-data-models-module"></span><h2>Data.data_models module<a class="headerlink" href="#module-Data.data_models" title="Permalink to this headline">¶</a></h2>
@@ -200,14 +322,104 @@ This implementation is time-independent with a fixed seed.</p>
 </dd></dl>
 
 </section>
-<section id="data-data-visualization-module">
-<h2>Data.data_visualization module<a class="headerlink" href="#data-data-visualization-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-Data.data_visualization">
+<span id="data-data-visualization-module"></span><h2>Data.data_visualization module<a class="headerlink" href="#module-Data.data_visualization" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Data.data_visualization.DataProcessing">
+<em class="property">class </em><code class="sig-prename descclassname">Data.data_visualization.</code><code class="sig-name descname">DataProcessing</code><span class="sig-paren">(</span><em class="sig-param">data: numpy.array</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_visualization.DataProcessing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="Data.data_visualization.DataProcessing.data2Pandas">
+<code class="sig-name descname">data2Pandas</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#Data.data_visualization.DataProcessing.data2Pandas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Data.data_visualization.DataProcessing.visualizeData">
+<code class="sig-name descname">visualizeData</code><span class="sig-paren">(</span><em class="sig-param">coordinate: int = 1</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#Data.data_visualization.DataProcessing.visualizeData" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="data-forecast-dataset-module">
-<h2>Data.forecast_dataset module<a class="headerlink" href="#data-forecast-dataset-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-Data.forecast_dataset">
+<span id="data-forecast-dataset-module"></span><h2>Data.forecast_dataset module<a class="headerlink" href="#module-Data.forecast_dataset" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Data.forecast_dataset.NextDayForecastDataset">
+<em class="property">class </em><code class="sig-prename descclassname">Data.forecast_dataset.</code><code class="sig-name descname">NextDayForecastDataset</code><span class="sig-paren">(</span><em class="sig-param">observations: numpy.array</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.NextDayForecastDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Data.forecast_dataset.PastNDaysForecastDataset" title="Data.forecast_dataset.PastNDaysForecastDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data.forecast_dataset.PastNDaysForecastDataset</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Data.forecast_dataset.Past30DaysForecastDataset">
+<em class="property">class </em><code class="sig-prename descclassname">Data.forecast_dataset.</code><code class="sig-name descname">Past30DaysForecastDataset</code><span class="sig-paren">(</span><em class="sig-param">observations: numpy.array</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.Past30DaysForecastDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Data.forecast_dataset.PastNDaysForecastDataset" title="Data.forecast_dataset.PastNDaysForecastDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data.forecast_dataset.PastNDaysForecastDataset</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Data.forecast_dataset.PastNDaysForecastDataset">
+<em class="property">class </em><code class="sig-prename descclassname">Data.forecast_dataset.</code><code class="sig-name descname">PastNDaysForecastDataset</code><span class="sig-paren">(</span><em class="sig-param">observations: numpy.array</em>, <em class="sig-param">t: int</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.PastNDaysForecastDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Data.forecast_dataset.WeatherDataset" title="Data.forecast_dataset.WeatherDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data.forecast_dataset.WeatherDataset</span></code></a></p>
+<dl class="method">
+<dt id="Data.forecast_dataset.PastNDaysForecastDataset.get_in_channels">
+<code class="sig-name descname">get_in_channels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.PastNDaysForecastDataset.get_in_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of input channels.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>torch.tensor: number of input channels</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Data.forecast_dataset.PastNDaysForecastDataset.get_input_shape">
+<code class="sig-name descname">get_input_shape</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.PastNDaysForecastDataset.get_input_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the shape of the input grid.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>torch.tensor: shape of the input grid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Data.forecast_dataset.PastNDaysForecastDataset.to">
+<code class="sig-name descname">to</code><span class="sig-paren">(</span><em class="sig-param">device</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.PastNDaysForecastDataset.to" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Data.forecast_dataset.PastNDaysForecastDataset.tr">
+<code class="sig-name descname">tr</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.PastNDaysForecastDataset.tr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Data.forecast_dataset.WeatherDataset">
+<em class="property">class </em><code class="sig-prename descclassname">Data.forecast_dataset.</code><code class="sig-name descname">WeatherDataset</code><a class="headerlink" href="#Data.forecast_dataset.WeatherDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataset.Dataset</span></code></p>
+<dl class="method">
+<dt id="Data.forecast_dataset.WeatherDataset.get_in_channels">
+<em class="property">abstract </em><code class="sig-name descname">get_in_channels</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#Data.forecast_dataset.WeatherDataset.get_in_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of input channels.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>torch.tensor: number of input channels</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Data.forecast_dataset.WeatherDataset.get_input_shape">
+<em class="property">abstract </em><code class="sig-name descname">get_input_shape</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; torch._VariableFunctionsClass.tensor<a class="headerlink" href="#Data.forecast_dataset.WeatherDataset.get_input_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the shape of the input grid.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>torch.tensor: shape of the input grid</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<section id="module-Data">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Data" title="Permalink to this headline">¶</a></h2>
 </section>
 </section>
 
