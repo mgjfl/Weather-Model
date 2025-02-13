@@ -19,3 +19,6 @@ tqdm
 matplotlib
 typing
 pathlib
+torchinfo
+typing
+typing_extensions
