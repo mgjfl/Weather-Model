@@ -6,7 +6,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import gpytorch
-import numpy as np
 from gpytorch.means import Mean, MultitaskMean
 from pytorch_wavelets import DWT, IDWT
 from neural_models import *

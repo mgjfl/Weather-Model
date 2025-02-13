@@ -2,8 +2,6 @@
 import torch
 from abc import abstractmethod, ABCMeta
 
-Parameters = dict[str, torch.tensor]
-
 class ProbabilisticModel(metaclass = ABCMeta):
     
     def __init__(self, d : int, w : int, parameter_shapes : dict[str, torch.tensor]):
@@ -24,7 +22,7 @@ class ProbabilisticModel(metaclass = ABCMeta):
         self.parameter_sizes    = torch.tensor(list(map(lambda x: torch.prod(x), self.parameter_shapes.values())))
         self.parameter_count    = self.parameter_sizes.sum()
 
-    def array2parameters(self, array : torch.tensor) -> Parameters:
+    def array2parameters(self, array : torch.tensor) -> dict[str, torch.tensor]:
         """Creates a map from parameter name to parameter value from a 1D array.
 
         Args:
@@ -47,7 +45,7 @@ class ProbabilisticModel(metaclass = ABCMeta):
 
         return out
 
-    def parameters2array(self, param_dict : Parameters) -> torch.tensor:
+    def parameters2array(self, param_dict : dict[str, torch.tensor]) -> torch.tensor:
         """Converts parameters into an 1D array.
 
         Args:
@@ -60,7 +58,7 @@ class ProbabilisticModel(metaclass = ABCMeta):
         return torch.hstack([x.reshape(-1) for x in param_dict.values()])
 
     @abstractmethod
-    def sample(self, params : Parameters) -> torch.tensor:
+    def sample(self, params : dict[str, torch.tensor]) -> torch.tensor:
         """Samples from a random distribution with certain parameters.
 
         Args:
@@ -69,7 +67,7 @@ class ProbabilisticModel(metaclass = ABCMeta):
         raise NotImplementedError("Must implement sample method.")
     
     @abstractmethod
-    def log_probs(self, params : Parameters, x : torch.tensor) -> torch.tensor:
+    def log_probs(self, params : dict[str, torch.tensor], x : torch.tensor) -> torch.tensor:
         """Computes the log probability at x.
 
         Args:
@@ -78,7 +76,7 @@ class ProbabilisticModel(metaclass = ABCMeta):
         """
         raise NotImplementedError("Must implement pdf method.")
     
-    def nll(self, params : Parameters, obs : torch.tensor) -> torch.tensor:
+    def nll(self, params : dict[str, torch.tensor], obs : torch.tensor) -> torch.tensor:
         """Computes the Negative Log Likelihood of the distribution given the observation.
 
         Args:
@@ -114,7 +112,7 @@ class RandomSampler(ProbabilisticModel):
         return data
     
         
-    def parameter_init(self, t : int, seed : int) -> Parameters:
+    def parameter_init(self, t : int, seed : int) -> dict[str, torch.tensor]:
         """
         Generates a random initialization of the parameters that satisfies potential constraints at time t.
         This implementation is time-independent with a fixed seed.
