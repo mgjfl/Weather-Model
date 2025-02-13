@@ -1,7 +1,7 @@
+sphinx_rtd_theme
 furo==2021.11.16
 nbsphinx
 sphinx_gallery
-sphinx_rtd_theme
 neuraloperator
 PyYaml
 wandb
@@ -14,3 +14,4 @@ torch_harmonics
 dill
 seaborn
 pytorch_wavelets
+pywt
