@@ -45,7 +45,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#data-data-generation-module">Data.data_generation module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#data-data-losses-module">Data.data_losses module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data-data-models-module">Data.data_models module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Data.data_models">Data.data_models module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#data-data-visualization-module">Data.data_visualization module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#data-forecast-dataset-module">Data.forecast_dataset module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-contents">Module contents</a></li>
@@ -57,7 +57,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#data-data-generation-module">Data.data_generation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#data-data-losses-module">Data.data_losses module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-data-models-module">Data.data_models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Data.data_models">Data.data_models module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#data-data-visualization-module">Data.data_visualization module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#data-forecast-dataset-module">Data.forecast_dataset module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-contents">Module contents</a></li>
@@ -104,8 +104,101 @@
 <section id="data-data-losses-module">
 <h2>Data.data_losses module<a class="headerlink" href="#data-data-losses-module" title="Permalink to this headline">¶</a></h2>
 </section>
-<section id="data-data-models-module">
-<h2>Data.data_models module<a class="headerlink" href="#data-data-models-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-Data.data_models">
+<span id="data-data-models-module"></span><h2>Data.data_models module<a class="headerlink" href="#module-Data.data_models" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Data.data_models.ProbabilisticModel">
+<em class="property">class </em><code class="sig-prename descclassname">Data.data_models.</code><code class="sig-name descname">ProbabilisticModel</code><span class="sig-paren">(</span><em class="sig-param">d: int, w: int, parameter_shapes: Dict[str, torch._VariableFunctionsClass.tensor]</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_models.ProbabilisticModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="Data.data_models.ProbabilisticModel.array2parameters">
+<code class="sig-name descname">array2parameters</code><span class="sig-paren">(</span><em class="sig-param">array: torch._VariableFunctionsClass.tensor</em><span class="sig-paren">)</span> &#x2192; Dict[str, torch._VariableFunctionsClass.tensor]<a class="headerlink" href="#Data.data_models.ProbabilisticModel.array2parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a map from parameter name to parameter value from a 1D array.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>array (torch.tensor): input array</p>
+</dd>
+<dt>Returns:</dt><dd><p>Parameters: mapping parameter name to value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Data.data_models.ProbabilisticModel.log_probs">
+<em class="property">abstract </em><code class="sig-name descname">log_probs</code><span class="sig-paren">(</span><em class="sig-param">params: Dict[str, torch._VariableFunctionsClass.tensor], x: torch._VariableFunctionsClass.tensor</em><span class="sig-paren">)</span> &#x2192; torch._VariableFunctionsClass.tensor<a class="headerlink" href="#Data.data_models.ProbabilisticModel.log_probs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the log probability at x.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>params (Parameters) : the parameters
+x (torch.tensor) : the input value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Data.data_models.ProbabilisticModel.nll">
+<code class="sig-name descname">nll</code><span class="sig-paren">(</span><em class="sig-param">params: Dict[str, torch._VariableFunctionsClass.tensor], obs: torch._VariableFunctionsClass.tensor</em><span class="sig-paren">)</span> &#x2192; torch._VariableFunctionsClass.tensor<a class="headerlink" href="#Data.data_models.ProbabilisticModel.nll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the Negative Log Likelihood of the distribution given the observation.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>params (dict[str, torch.tensor]) : the parameters
+obs (torch.tensor) : the observation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Data.data_models.ProbabilisticModel.parameters2array">
+<code class="sig-name descname">parameters2array</code><span class="sig-paren">(</span><em class="sig-param">param_dict: Dict[str, torch._VariableFunctionsClass.tensor]</em><span class="sig-paren">)</span> &#x2192; torch._VariableFunctionsClass.tensor<a class="headerlink" href="#Data.data_models.ProbabilisticModel.parameters2array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts parameters into an 1D array.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>param_dict (dict[str, torch.tensor]): mapping from parameter name to value</p>
+</dd>
+<dt>Returns:</dt><dd><p>torch.tensor: resulting 1D array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Data.data_models.ProbabilisticModel.sample">
+<em class="property">abstract </em><code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">params: Dict[str, torch._VariableFunctionsClass.tensor]</em><span class="sig-paren">)</span> &#x2192; torch._VariableFunctionsClass.tensor<a class="headerlink" href="#Data.data_models.ProbabilisticModel.sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Samples from a random distribution with certain parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>params (Parameters) : the parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Data.data_models.RandomSampler">
+<em class="property">class </em><code class="sig-prename descclassname">Data.data_models.</code><code class="sig-name descname">RandomSampler</code><span class="sig-paren">(</span><em class="sig-param">d: int, w: int, parameter_shapes: Dict[str, torch._VariableFunctionsClass.tensor]</em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_models.RandomSampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Data.data_models.ProbabilisticModel" title="Data.data_models.ProbabilisticModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data.data_models.ProbabilisticModel</span></code></a></p>
+<dl class="method">
+<dt id="Data.data_models.RandomSampler.generate">
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param">n: int</em>, <em class="sig-param">seed: int</em><span class="sig-paren">)</span> &#x2192; torch._VariableFunctionsClass.tensor<a class="headerlink" href="#Data.data_models.RandomSampler.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates data for n days with parameters given by parameters_init.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>n (int): number of days</p>
+</dd>
+<dt>Returns:</dt><dd><p>torch.tensor: the output data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Data.data_models.RandomSampler.parameter_init">
+<code class="sig-name descname">parameter_init</code><span class="sig-paren">(</span><em class="sig-param">t: int</em>, <em class="sig-param">seed: int</em><span class="sig-paren">)</span> &#x2192; Dict[str, torch._VariableFunctionsClass.tensor]<a class="headerlink" href="#Data.data_models.RandomSampler.parameter_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random initialization of the parameters that satisfies potential constraints at time t.
+This implementation is time-independent with a fixed seed.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>t (int) : time</p>
+</dd>
+<dt>Returns:</dt><dd><p>Parameters: mapping parameter name to value</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="data-data-visualization-module">
 <h2>Data.data_visualization module<a class="headerlink" href="#data-data-visualization-module" title="Permalink to this headline">¶</a></h2>

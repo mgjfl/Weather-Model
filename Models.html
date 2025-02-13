@@ -45,7 +45,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Models package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#models-fnn-module">Models.FNN module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#models-neural-models-module">Models.neural_models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Models.neural_models">Models.neural_models module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
@@ -85,8 +85,79 @@
 <section id="models-fnn-module">
 <h2>Models.FNN module<a class="headerlink" href="#models-fnn-module" title="Permalink to this headline">¶</a></h2>
 </section>
-<section id="models-neural-models-module">
-<h2>Models.neural_models module<a class="headerlink" href="#models-neural-models-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-Models.neural_models">
+<span id="models-neural-models-module"></span><h2>Models.neural_models module<a class="headerlink" href="#module-Models.neural_models" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Models.neural_models.ACW">
+<em class="property">class </em><code class="sig-prename descclassname">Models.neural_models.</code><code class="sig-name descname">ACW</code><span class="sig-paren">(</span><em class="sig-param">model_class: torch.nn.modules.module.Module</em>, <em class="sig-param">in_channels: int</em>, <em class="sig-param">out_channels: int</em>, <em class="sig-param">grid_shape: torch._VariableFunctionsClass.tensor = None</em>, <em class="sig-param">out_size: int = None</em>, <em class="sig-param">**model_kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Models.neural_models.ACW" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Adjustable Channel Wrapper: a wrapper for neural networks that provides
+for explicit specification of the in- and out-channels.</p>
+<dl class="method">
+<dt id="Models.neural_models.ACW.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#Models.neural_models.ACW.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</aside>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Models.neural_models.ACW.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#Models.neural_models.ACW.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Models.neural_models.ACW.use_linear_projection">
+<code class="sig-name descname">use_linear_projection</code><span class="sig-paren">(</span><em class="sig-param">in_shape: torch._VariableFunctionsClass.tensor</em>, <em class="sig-param">out_size: int</em><span class="sig-paren">)</span><a class="headerlink" href="#Models.neural_models.ACW.use_linear_projection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Models.neural_models.BNN">
+<em class="property">class </em><code class="sig-prename descclassname">Models.neural_models.</code><code class="sig-name descname">BNN</code><span class="sig-paren">(</span><em class="sig-param">probabilistic_model: Data.data_models.ProbabilisticModel</em>, <em class="sig-param">in_channels: int</em>, <em class="sig-param">model_class: torch.nn.modules.module.Module</em>, <em class="sig-param">**model_kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Models.neural_models.BNN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Models.neural_models.ACW" title="Models.neural_models.ACW"><code class="xref py py-class docutils literal notranslate"><span class="pre">Models.neural_models.ACW</span></code></a></p>
+<p>A Bayesian Neural Network that is a Neural Network (ACW) with output specified by the given probabilistic model.</p>
+<dl class="method">
+<dt id="Models.neural_models.BNN.sample">
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">n</em><span class="sig-paren">)</span><a class="headerlink" href="#Models.neural_models.BNN.sample" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Models.neural_models.BNN.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#Models.neural_models.BNN.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Models.neural_models.PNN">
+<em class="property">class </em><code class="sig-prename descclassname">Models.neural_models.</code><code class="sig-name descname">PNN</code><span class="sig-paren">(</span><em class="sig-param">probabilistic_model: Data.data_models.ProbabilisticModel</em>, <em class="sig-param">model_class: torch.nn.modules.module.Module</em>, <em class="sig-param">in_channels: int</em>, <em class="sig-param">out_channels: int</em>, <em class="sig-param">grid_shape: torch._VariableFunctionsClass.tensor = None</em>, <em class="sig-param">**model_kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Models.neural_models.PNN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Models.neural_models.ACW" title="Models.neural_models.ACW"><code class="xref py py-class docutils literal notranslate"><span class="pre">Models.neural_models.ACW</span></code></a></p>
+<p>A probabilistic Neural Network that is a Neural Network (ACW) with output specified by the given probabilistic model.</p>
+<dl class="method">
+<dt id="Models.neural_models.PNN.get_prob_model">
+<code class="sig-name descname">get_prob_model</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Models.neural_models.PNN.get_prob_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Models.neural_models.PNN.sample">
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">n</em><span class="sig-paren">)</span><a class="headerlink" href="#Models.neural_models.PNN.sample" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Models.neural_models.PNN.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#Models.neural_models.PNN.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-contents">
 <h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
