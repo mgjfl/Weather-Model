@@ -1,3 +1,4 @@
+sphinx<9,>=6
 furo==2021.11.16
 sphinx_rtd_theme
 neuraloperator
@@ -6,3 +7,7 @@ wandb
 torch
 numpy
 sphinx
+pandas
+gpytorch
+torch_harmonics
+dill
