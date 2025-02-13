@@ -1,2 +1,7 @@
 sphinx_rtd_theme
-furo==2021.11.16
+neuraloperator
+yaml
+wandb
+torch
+numpy
+sphinx
