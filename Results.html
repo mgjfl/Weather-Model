@@ -7,15 +7,12 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Results package &mdash; Weather-Model  documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/jquery.js"></script>
+      <script src="_static/underscore.js"></script>
+      <script src="_static/doctools.js"></script>
+      <script src="_static/language_data.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -49,7 +46,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Results package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#results-extract-from-configuration-module">Results.extract_from_configuration module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#results-parser-module">Results.parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Results.parser">Results.parser module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#results-run-configuration-module">Results.run_configuration module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#results-save-results-module">Results.save_results module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-Results">Module contents</a></li>
@@ -83,24 +80,71 @@
            <div itemprop="articleBody">
              
   <section id="results-package">
-<h1>Results package<a class="headerlink" href="#results-package" title="Permalink to this heading"></a></h1>
+<h1>Results package<a class="headerlink" href="#results-package" title="Permalink to this headline">¶</a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="results-extract-from-configuration-module">
-<h2>Results.extract_from_configuration module<a class="headerlink" href="#results-extract-from-configuration-module" title="Permalink to this heading"></a></h2>
+<h2>Results.extract_from_configuration module<a class="headerlink" href="#results-extract-from-configuration-module" title="Permalink to this headline">¶</a></h2>
 </section>
-<section id="results-parser-module">
-<h2>Results.parser module<a class="headerlink" href="#results-parser-module" title="Permalink to this heading"></a></h2>
+<section id="module-Results.parser">
+<span id="results-parser-module"></span><h2>Results.parser module<a class="headerlink" href="#module-Results.parser" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Results.parser.ConfigManager">
+<em class="property">class </em><code class="sig-prename descclassname">Results.parser.</code><code class="sig-name descname">ConfigManager</code><span class="sig-paren">(</span><em class="sig-param">config_path</em><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="Results.parser.ConfigManager.get_data_config">
+<code class="sig-name descname">get_data_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager.get_data_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve data configuration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Results.parser.ConfigManager.get_model_config">
+<code class="sig-name descname">get_model_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager.get_model_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve model configuration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Results.parser.ConfigManager.get_output_config">
+<code class="sig-name descname">get_output_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager.get_output_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve output configuration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Results.parser.ConfigManager.get_training_config">
+<code class="sig-name descname">get_training_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager.get_training_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve training configuration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Results.parser.ConfigManager.load_config">
+<code class="sig-name descname">load_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager.load_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load configuration from a YAML file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Results.parser.ConfigManager.save_config">
+<code class="sig-name descname">save_config</code><span class="sig-paren">(</span><em class="sig-param">output_path</em><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.ConfigManager.save_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save configuration to a YAML file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="Results.parser.create_yaml_template">
+<code class="sig-prename descclassname">Results.parser.</code><code class="sig-name descname">create_yaml_template</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Results.parser.create_yaml_template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </section>
 <section id="results-run-configuration-module">
-<h2>Results.run_configuration module<a class="headerlink" href="#results-run-configuration-module" title="Permalink to this heading"></a></h2>
+<h2>Results.run_configuration module<a class="headerlink" href="#results-run-configuration-module" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="results-save-results-module">
-<h2>Results.save_results module<a class="headerlink" href="#results-save-results-module" title="Permalink to this heading"></a></h2>
+<h2>Results.save_results module<a class="headerlink" href="#results-save-results-module" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="module-Results">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Results" title="Permalink to this heading"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Results" title="Permalink to this headline">¶</a></h2>
 </section>
 </section>
 
