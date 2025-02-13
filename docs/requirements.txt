@@ -14,4 +14,4 @@ torch_harmonics
 dill
 seaborn
 pytorch_wavelets
-pywt
+PyWavelets
