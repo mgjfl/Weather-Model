@@ -2,7 +2,7 @@
 import sys
 import os
 import pathlib
-HOME_DIR = str(pathlib.Path(__file__).parent.parent.parent.resolve())
+HOME_DIR = str(pathlib.Path(__file__).parent.parent.resolve())
 sys.path.append(HOME_DIR)
 print(f"Home dir is : {HOME_DIR}")
 
