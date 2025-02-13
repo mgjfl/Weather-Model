@@ -2,6 +2,12 @@ import torch
 from torch.utils.data import DataLoader
 import numpy as np
 from timeit import default_timer as timer
+import sys
+import os
+import pathlib
+HOME_DIR = str(pathlib.Path(__file__).parent.parent.resolve())
+sys.path.append(HOME_DIR)
+from Models import GP
 
 class EarlyStopper:
     def __init__(self, patience=1, min_delta=0):
@@ -39,10 +45,11 @@ def train_one_epoch(
     # Unnecessary in this situation but added for best practices
     model.train()
     for batch, (X, y) in enumerate(dataloader):
-        
-        
-        
-        # Compute prediction and loss
+
+        # if issubclass(type(model), GP):
+        #     pred = model(X)
+        #     loss = model.compute_loss(loss_fn, pred, y)
+        # else:
         pred = model(X)
         loss = loss_fn(pred, y)
         
@@ -77,6 +84,10 @@ def val_one_epoch(dataloader, model, loss_fn, verbose = False):
     # also serves to reduce unnecessary gradient computations and memory usage for tensors with requires_grad=True
     with torch.no_grad():
         for X, y in dataloader:
+            # if issubclass(type(model), GP):
+            #     pred = model(X)
+            #     test_loss += np.longdouble(model.compute_loss(loss_fn, pred, y).item() * X.size(0))
+            # else:
             pred = model(X)
             test_loss += np.longdouble(loss_fn(pred, y).item() * X.size(0))
 

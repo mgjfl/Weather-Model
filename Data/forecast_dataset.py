@@ -27,7 +27,7 @@ class WeatherDataset(Dataset):
         raise NotImplementedError("Subclass must implement this method.")
 
 class PastNDaysForecastDataset(WeatherDataset):
-    def __init__(self, observations : np.array, days : int):
+    def __init__(self, observations : np.array, t : int):
         """_summary_
 
         Args:
@@ -35,13 +35,13 @@ class PastNDaysForecastDataset(WeatherDataset):
             n (int): _description_
             device (str): _description_
         """
-        self.days = days
+        self.t = t
         n, w, d = observations.shape
         self.n = n
         self.w = w
         self.d = d
         self.observations = torch.Tensor(observations)
-        self.input_shape = torch.tensor([self.days, self.d])
+        self.input_shape = torch.tensor([self.t, self.d])
         self.in_channels = w
         
     def to(self, device):
@@ -56,14 +56,14 @@ class PastNDaysForecastDataset(WeatherDataset):
         return self.in_channels
 
     def __len__(self):
-        return len(self.observations) - self.days
+        return len(self.observations) - self.t
     
-    def t(self, x):
+    def tr(self, x):
         return torch.transpose(x, 0, 1)
 
     def __getitem__(self, idx):
-        return (self.t(self.observations[idx : idx + self.days]), 
-                self.observations[idx + self.days])
+        return (self.tr(self.observations[idx : idx + self.t]), 
+                self.observations[idx + self.t])
 
 class NextDayForecastDataset(PastNDaysForecastDataset):
     def __init__(self, observations : np.array):

@@ -13,7 +13,13 @@ class ACW(nn.Module):
     for explicit specification of the in- and out-channels.
     """
     
-    def __init__(self, model_class : nn.Module, in_channels : int, out_channels : int, grid_shape : torch.tensor = None, out_size : int = None, **model_kwargs):
+    def __init__(self, 
+                 model_class : nn.Module, 
+                 in_channels : int, 
+                 out_channels : int, 
+                 grid_shape : torch.tensor = None, 
+                 out_size : int = None, 
+                 **model_kwargs):
         super(ACW, self).__init__()
         self.model_class = model_class
         self.in_channels = in_channels
@@ -61,7 +67,13 @@ class PNN(ACW):
     A probabilistic Neural Network that is a Neural Network (ACW) with output specified by the given probabilistic model. 
     """
     
-    def __init__(self, probabilistic_model : ProbabilisticModel, model_class : nn.Module, in_channels : int, out_channels : int, grid_shape : torch.tensor = None, **model_kwargs):
+    def __init__(self, 
+                 probabilistic_model : ProbabilisticModel, 
+                 model_class : nn.Module, 
+                 in_channels : int, 
+                 out_channels : int, 
+                 grid_shape : torch.tensor = None, 
+                 **model_kwargs):
         super().__init__(
             model_class=model_class,
             in_channels=in_channels,

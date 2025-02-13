@@ -8,6 +8,7 @@ import errno
 import stat
 import torch
 from collections import defaultdict
+import dill
 
 def handleRemoveReadonly(func, path, exc):
   excvalue = exc[1]
@@ -84,7 +85,7 @@ class DataSaver:
             
     def save_model(self, output_dir, model):
         """Save PyTorch model in the TorchScript format."""
-        torch.save(model, os.path.join(output_dir, 'trained_model.pt')) # Save
+        torch.save(model, os.path.join(output_dir, 'trained_model.pt'), pickle_module=dill) # Save
         
         
     def end_run(self, model):

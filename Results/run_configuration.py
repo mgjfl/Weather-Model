@@ -1,4 +1,4 @@
-from parser import *
+
 import sys
 import os
 import pathlib
@@ -10,6 +10,7 @@ from Training import *
 from Models import *
 from torch.optim import *
 from torch.optim.lr_scheduler import *
+from parser import *
 from save_results import *
 from cProfile import Profile
 from pstats import SortKey, Stats
@@ -62,11 +63,11 @@ def run_configuration(config_name, verbose = False):
                 print(f"Starting run {run_number + 1}/{data_config['n_runs']}.")
             
             # Create the model
-            model = create_model(model_config=model_config, dataset=dataset, device=device)
+            model = create_model(data_config=data_config, model_config=model_config, dataset=dataset, device=device)
             model = model.to(device)
             
             # Define training components
-            loss_fn, optimizer, scheduler = get_training_components(model=model, training_config=training_config)
+            loss_fn, optimizer, scheduler = get_training_components(model=model, training_config=training_config, data_config=data_config)
 
             # Prepare for saving the data
             data_saver = DataSaver(
@@ -163,7 +164,8 @@ if __name__ == "__main__":
     # run_project("TrainingEval")
     
     # Run a single configuration
-    run_configuration("config_TFNO.yaml", verbose=False)
+    # run_configuration("config_GP_FNO.yaml", verbose=True)
+    run_configuration("test_GP_FNO.yaml", verbose=True)
 
     # Profile a configuration
     # profile_configuration("config_FNO.yaml")
