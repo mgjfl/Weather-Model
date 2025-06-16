@@ -1,0 +1,10 @@
+Trial 0: val_loss=29459.144292195608, params={'num_latents': 4, 'm_inducing_points': 8, 'hidden_channels': 16, 'n_modes': 6, 'n_layers': 6}
+Trial 1: val_loss=29082.608473714175, params={'num_latents': 6, 'm_inducing_points': 8, 'hidden_channels': 16, 'n_modes': 6, 'n_layers': 4}
+Trial 2: val_loss=28309.49302775064, params={'num_latents': 4, 'm_inducing_points': 8, 'hidden_channels': 32, 'n_modes': 6, 'n_layers': 4}
+Trial 3: val_loss=28489.03191172279, params={'num_latents': 6, 'm_inducing_points': 8, 'hidden_channels': 32, 'n_modes': 4, 'n_layers': 6}
+Trial 4: val_loss=29388.367578124973, params={'num_latents': 6, 'm_inducing_points': 16, 'hidden_channels': 16, 'n_modes': 4, 'n_layers': 4}
+Trial 5: val_loss=27984.79798177081, params={'num_latents': 6, 'm_inducing_points': 16, 'hidden_channels': 32, 'n_modes': 6, 'n_layers': 6}
+Trial 6: val_loss=29403.939549255356, params={'num_latents': 6, 'm_inducing_points': 32, 'hidden_channels': 16, 'n_modes': 4, 'n_layers': 8}
+Trial 7: val_loss=29402.84220326739, params={'num_latents': 6, 'm_inducing_points': 8, 'hidden_channels': 16, 'n_modes': 12, 'n_layers': 6}
+Trial 8: val_loss=29396.372774759904, params={'num_latents': 6, 'm_inducing_points': 8, 'hidden_channels': 16, 'n_modes': 6, 'n_layers': 6}
+Trial 9: val_loss=27944.231177775044, params={'num_latents': 4, 'm_inducing_points': 16, 'hidden_channels': 32, 'n_modes': 6, 'n_layers': 4}

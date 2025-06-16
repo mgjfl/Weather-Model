@@ -1,0 +1,3 @@
+Best hyperparameters:
+{'num_latents': 4, 'm_inducing_points': 16, 'hidden_channels': 32, 'n_modes': 6, 'n_layers': 4}
+Best value: 27944.231177775044
