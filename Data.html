@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data package &mdash; Weather-Model  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Models package" href="Models.html" />
+    <link rel="prev" title="Welcome to Weather-Model’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Weather-Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-data-losses-module">Data.data_losses module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-forecast-dataset-module">Data.forecast_dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-synthetic">Data.Synthetic</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Models.html">Models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Results.html">Results package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Training.html">Training package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weather-Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Data package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-package">
+<h1>Data package<a class="headerlink" href="#data-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="data-data-losses-module">
+<h2>Data.data_losses module<a class="headerlink" href="#data-data-losses-module" title="Permalink to this heading"></a></h2>
+<p>This module contains all losses used for training.</p>
+<span class="target" id="module-Data.data_losses"></span><dl class="py class">
+<dt class="sig sig-object py" id="Data.data_losses.Full_MSELoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Data.data_losses.</span></span><span class="sig-name descname"><span class="pre">Full_MSELoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.Full_MSELoss" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.data_losses.Full_MSELoss.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.Full_MSELoss.forward" title="Permalink to this definition"></a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Data.data_losses.GradientSmoothnessLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Data.data_losses.</span></span><span class="sig-name descname"><span class="pre">GradientSmoothnessLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_regularization</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.GradientSmoothnessLoss" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.data_losses.GradientSmoothnessLoss.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.GradientSmoothnessLoss.forward" title="Permalink to this definition"></a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Data.data_losses.Mean_MSELoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Data.data_losses.</span></span><span class="sig-name descname"><span class="pre">Mean_MSELoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.Mean_MSELoss" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.data_losses.Mean_MSELoss.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.Mean_MSELoss.forward" title="Permalink to this definition"></a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Data.data_losses.NMLLLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Data.data_losses.</span></span><span class="sig-name descname"><span class="pre">NMLLLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularization_weight</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.NMLLLoss" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>Marginal Negative Log Likelihood for Gaussian Processes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.data_losses.NMLLLoss.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isTraining</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.NMLLLoss.forward" title="Permalink to this definition"></a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Data.data_losses.VariationalELBOLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Data.data_losses.</span></span><span class="sig-name descname"><span class="pre">VariationalELBOLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularization_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_regularization</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.VariationalELBOLoss" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.data_losses.VariationalELBOLoss.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isTraining</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.data_losses.VariationalELBOLoss.forward" title="Permalink to this definition"></a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="data-forecast-dataset-module">
+<h2>Data.forecast_dataset module<a class="headerlink" href="#data-forecast-dataset-module" title="Permalink to this heading"></a></h2>
+<p>This module contains all dataset wrappers used for training.</p>
+<span class="target" id="module-Data.forecast_dataset"></span><dl class="py class">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Data.forecast_dataset.</span></span><span class="sig-name descname"><span class="pre">GridStationDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_ds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">station_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sta_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_weather_vars</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Data.forecast_dataset.WeatherDataset" title="Data.forecast_dataset.WeatherDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeatherDataset</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.era5_name_to_kis_name">
+<span class="sig-name descname"><span class="pre">era5_name_to_kis_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.era5_name_to_kis_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.get_domain_shape">
+<span class="sig-name descname"><span class="pre">get_domain_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.get_domain_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the shape of the input grid.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>torch.tensor: shape of the input grid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.get_in_channels">
+<span class="sig-name descname"><span class="pre">get_in_channels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.get_in_channels" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the number of input channels.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>torch.tensor: number of input channels</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.get_kis_obs">
+<span class="sig-name descname"><span class="pre">get_kis_obs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.get_kis_obs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.get_num_train_data">
+<span class="sig-name descname"><span class="pre">get_num_train_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.get_num_train_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.get_test_idx">
+<span class="sig-name descname"><span class="pre">get_test_idx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.get_test_idx" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.get_test_loader">
+<span class="sig-name descname"><span class="pre">get_test_loader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.get_test_loader" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.get_timestamp">
+<span class="sig-name descname"><span class="pre">get_timestamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.get_timestamp" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.get_train_idx">
+<span class="sig-name descname"><span class="pre">get_train_idx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.get_train_idx" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.get_train_loader">
+<span class="sig-name descname"><span class="pre">get_train_loader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.get_train_loader" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.interpolate_era5">
+<span class="sig-name descname"><span class="pre">interpolate_era5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.interpolate_era5" title="Permalink to this definition"></a></dt>
+<dd><p>Interpolates ERA5 data to target coordinates for each batch and weather variable.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>X (Tensor): Input ERA5 data of shape [B, W, V, H]</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tensor: Interpolated values of shape [B, W_out, M]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.precompute_kis_obs">
+<span class="sig-name descname"><span class="pre">precompute_kis_obs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.precompute_kis_obs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.precompute_outputs">
+<span class="sig-name descname"><span class="pre">precompute_outputs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.precompute_outputs" title="Permalink to this definition"></a></dt>
+<dd><p>Precompute interpolated outputs at station locations for all timesteps.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.shuffle_train_indices">
+<span class="sig-name descname"><span class="pre">shuffle_train_indices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.shuffle_train_indices" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.GridStationDataset.to">
+<span class="sig-name descname"><span class="pre">to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.GridStationDataset.to" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Data.forecast_dataset.PastNDaysForecastDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Data.forecast_dataset.</span></span><span class="sig-name descname"><span class="pre">PastNDaysForecastDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covariances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.PastNDaysForecastDataset" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Data.forecast_dataset.WeatherDataset" title="Data.forecast_dataset.WeatherDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeatherDataset</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.PastNDaysForecastDataset.get_domain_shape">
+<span class="sig-name descname"><span class="pre">get_domain_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.PastNDaysForecastDataset.get_domain_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the shape of the input grid.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>torch.tensor: shape of the input grid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.PastNDaysForecastDataset.get_in_channels">
+<span class="sig-name descname"><span class="pre">get_in_channels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.PastNDaysForecastDataset.get_in_channels" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the number of input channels.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>torch.tensor: number of input channels</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.PastNDaysForecastDataset.get_test_loader">
+<span class="sig-name descname"><span class="pre">get_test_loader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.PastNDaysForecastDataset.get_test_loader" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.PastNDaysForecastDataset.get_test_xy">
+<span class="sig-name descname"><span class="pre">get_test_xy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.PastNDaysForecastDataset.get_test_xy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.PastNDaysForecastDataset.to">
+<span class="sig-name descname"><span class="pre">to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.PastNDaysForecastDataset.to" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Data.forecast_dataset.WeatherDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Data.forecast_dataset.</span></span><span class="sig-name descname"><span class="pre">WeatherDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.WeatherDataset" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
+<p>Base class for other datasets containing weather data.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.WeatherDataset.data_split">
+<span class="sig-name descname"><span class="pre">data_split</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.WeatherDataset.data_split" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.WeatherDataset.get_domain_shape">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_domain_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tensor</span></span></span><a class="headerlink" href="#Data.forecast_dataset.WeatherDataset.get_domain_shape" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the shape of the input grid.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>torch.tensor: shape of the input grid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.WeatherDataset.get_in_channels">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_in_channels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#Data.forecast_dataset.WeatherDataset.get_in_channels" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the number of input channels.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>torch.tensor: number of input channels</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.WeatherDataset.get_test_loader">
+<span class="sig-name descname"><span class="pre">get_test_loader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.WeatherDataset.get_test_loader" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.WeatherDataset.get_test_xy">
+<span class="sig-name descname"><span class="pre">get_test_xy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.WeatherDataset.get_test_xy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.WeatherDataset.get_train_loader">
+<span class="sig-name descname"><span class="pre">get_train_loader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.WeatherDataset.get_train_loader" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Data.forecast_dataset.WeatherDataset.get_train_xy">
+<span class="sig-name descname"><span class="pre">get_train_xy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.WeatherDataset.get_train_xy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.forecast_dataset.create_GridStationDataset">
+<span class="sig-prename descclassname"><span class="pre">Data.forecast_dataset.</span></span><span class="sig-name descname"><span class="pre">create_GridStationDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">training_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.forecast_dataset.create_GridStationDataset" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="data-synthetic">
+<h2>Data.Synthetic<a class="headerlink" href="#data-synthetic" title="Permalink to this heading"></a></h2>
+<p>This module contains the functionality for creating the synthetic dataset.</p>
+<span class="target" id="module-Data.Synthetic.generate_synthetic_data"></span><dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.generate_synthetic_data.compute_and_sample_values">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.generate_synthetic_data.</span></span><span class="sig-name descname"><span class="pre">compute_and_sample_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.generate_synthetic_data.compute_and_sample_values" title="Permalink to this definition"></a></dt>
+<dd><p>Computes parameters mu and Sigma for the synthetic model at three settings. 
+Saves these parameters and samples from the probabilistic distribution.</p>
+</dd></dl>
+
+<span class="target" id="module-Data.Synthetic.synthetic_data_util"></span><dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.compute_covariance">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">compute_covariance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zeta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncycles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.compute_covariance" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the full covariance matrix at various timesteps for the synthetic data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.compute_mean">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">compute_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RH</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.compute_mean" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the mean at various timesteps for the synthetic data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.compute_output">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">compute_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S_full</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.compute_output" title="Permalink to this definition"></a></dt>
+<dd><p>Computes samples at various timesteps for the synthetic data based on the means and covariance matrices.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.get_vmins_and_vmaxs">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">get_vmins_and_vmaxs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.get_vmins_and_vmaxs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.integrand">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">integrand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_vec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.integrand" title="Permalink to this definition"></a></dt>
+<dd><p>Defines the integrand of the temperature solution.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.plot_contours">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">plot_contours</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_time_slices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncycles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmaxs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savedir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">setting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closeOnSave</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_rel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveFull</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.plot_contours" title="Permalink to this definition"></a></dt>
+<dd><p>General-purpose plotting function to plot synthetic data samples at various timesteps with several configurable settings.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.sigma_t">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">sigma_t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.sigma_t" title="Permalink to this definition"></a></dt>
+<dd><p>The time contribution to the covariance matrix.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.sigma_w">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">sigma_w</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.sigma_w" title="Permalink to this definition"></a></dt>
+<dd><p>The weather type contribution to the covariance matrix.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.sigma_x">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">sigma_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.sigma_x" title="Permalink to this definition"></a></dt>
+<dd><p>The spatial contribution to the covariance matrix.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.temp">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">temp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.temp" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the solution to the inhomogeneous forced heat equation with Gaussian IC.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.temp_h">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">temp_h</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.temp_h" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the solution to the homogeneous heat equation given the Gaussian initial temperature profile.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.temp_i">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">temp_i</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.temp_i" title="Permalink to this definition"></a></dt>
+<dd><p>Provides the initial temperature profile.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Data.Synthetic.synthetic_data_util.temp_p">
+<span class="sig-prename descclassname"><span class="pre">Data.Synthetic.synthetic_data_util.</span></span><span class="sig-name descname"><span class="pre">temp_p</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Data.Synthetic.synthetic_data_util.temp_p" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the particular temperature solution that is caused by the forcing term beta * sin(t) * delta(x).</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Weather-Model’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Models.html" class="btn btn-neutral float-right" title="Models package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Maurits Flos.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
