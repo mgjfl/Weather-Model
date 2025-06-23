@@ -1,4 +1,4 @@
-# Hybrid Approaches to Weather Forecasting: Integrating Statistical Models and Neural
+# Hybrid Approaches to Weather Forecasting: Integrating Statistical Models and Neural Operators
 
 This repository provides a pipeline for combining machine learning-based forecasting with statistical postprocessing techniques. It integrates deep learning models with multivariate statistical correction using copulas, EMOS, and ensemble verification methods. The repository is organized into functional components structured across synthetic experiments and real-world ensemble forecast data. Further documentation for the python modules can be found [here](https://mgjfl.github.io/Weather-Model/).
 
